@@ -1,0 +1,38 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card ">
+          <div class="card-header card-header-primary card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Editar Paciente</h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <form method="#" action="#">
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="nombre" placeholder="Nombre" type="text" [(ngModel)]="categoria.descripcion">
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- div card footer with items aligned to right -->
+          <div class="card-footer ">
+            <div class="row">
+              <div class="col-md-12">
+
+                <button mat-raised-button class="btn btn-fill btn-primary mx-2"
+                  (click)='save()'>Guardar</button>
+                <button mat-raised-button class="btn btn-fill btn-secondary mx-2"
+                  [routerLink]="['/categoria']">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

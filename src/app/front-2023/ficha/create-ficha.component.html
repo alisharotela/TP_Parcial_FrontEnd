@@ -1,0 +1,81 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card ">
+          <div class="card-header card-header-primary card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">{{title}}</h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <form method="#" action="#">
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="fecha" placeholder="Fecha" type="date" [(ngModel)]="ficha.fecha">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Reserva" name="Reserva" [(ngModel)]="ficha.reserva" >
+                      <mat-option *ngFor="let reserva of reservas" [value]="reserva.idReserva">
+                        {{reserva.fecha}} {{reserva.hora}} {{reserva.paciente}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="text" placeholder="Motivo consulta" type="text"
+                      [(ngModel)]="ficha.motivo_consulta">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="text" placeholder="diagnostico" type="text"
+                      [(ngModel)]="ficha.diagnostico">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Paciente" name="paciente" [(ngModel)]="ficha.paciente">
+                      <mat-option *ngFor="let paciente of pacientes" [value]="paciente.idPersona">
+                        {{paciente.nombre}} {{paciente.apellido}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Doctor" name="doctor" [(ngModel)]="ficha.doctor">
+                      <mat-option *ngFor="let doctor of doctores" [value]="doctor.idPersona">
+                        {{doctor.nombre}} {{doctor.apellido}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- div card footer with items aligned to right -->
+          <div class="card-footer ">
+            <div class="row">
+              <div class="col-md-12">
+
+                <button mat-raised-button class="btn btn-fill btn-primary mx-2"
+                  (click)='create()'>Guardar</button>
+                <button mat-raised-button class="btn btn-fill btn-secondary mx-2"
+                  [routerLink]="['/ficha']">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
