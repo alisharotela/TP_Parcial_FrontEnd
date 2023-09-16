@@ -30,11 +30,8 @@
                   <tr>
                     <th>{{ dataTable.headerRow[0] }}</th>
                     <th>{{ dataTable.headerRow[1] }}</th>
-                    <th>{{ dataTable.headerRow[2] }}</th>
-                    <th>{{ dataTable.headerRow[3] }}</th>
-                    <th>{{ dataTable.headerRow[4] }}</th>
-                    <th class="disabled-sorting text-right">
-                      {{ dataTable.headerRow[5] }}
+                    <th class="disabled-sorting ">
+                      {{ dataTable.headerRow[2] }}
                     </th>
                   </tr>
                 </thead>
@@ -42,17 +39,14 @@
                   <tr>
                     <th>{{ dataTable.footerRow[0] }}</th>
                     <th>{{ dataTable.footerRow[1] }}</th>
-                    <th>{{ dataTable.footerRow[2] }}</th>
-                    <th>{{ dataTable.footerRow[3] }}</th>
-                    <th>{{ dataTable.footerRow[4] }}</th>
-                    <th class="text-right">{{ dataTable.footerRow[5] }}</th>
+                    <th class="">{{ dataTable.footerRow[2] }}</th>
                   </tr>
                 </tfoot>
                 <tbody>
                   <tr *ngFor="let categoria of categorias">
                     <td>{{ categoria.idCategoria }}</td>
                     <td>{{ categoria.descripcion }}</td>
-                    <td class="text-right">
+                    <td class="">
                       <!-- Angular on click button -->
                       
                       <!-- <a

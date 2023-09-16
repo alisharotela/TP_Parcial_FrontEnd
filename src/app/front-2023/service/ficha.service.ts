@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { listadatos } from '../model/datos';
-import { Ficha } from '../model/ficha.model';
+import { Ficha, FiltroFicha } from '../model/ficha.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +15,39 @@ export class FichaService {
     return ficha;
   }
 
-  getFichas(): listadatos<Ficha> {
+  getFichas(filtros?: FiltroFicha): listadatos<Ficha> {
     const fichas =
       JSON.parse(localStorage.getItem('fichas')) ?? ([] as Ficha[]);
+      
+    if (filtros === undefined) {
+      return {
+        lista: fichas,
+        totalDatos: fichas.length,
+      };
+    }
+
+    let fichasFiltradas = fichas;
+    for (const key in filtros) {
+      if (!filtros[key]) continue;
+      if (key == 'fechaInicio') {
+        fichasFiltradas = fichasFiltradas.filter(
+          (element: Ficha) => element.fecha >= filtros[key]
+        );
+        continue;
+      }
+      if (key == 'fechaFin') {
+        fichasFiltradas = fichasFiltradas.filter(
+          (element: Ficha) => element.fecha <= filtros[key]
+        );
+        continue;
+      }
+      fichasFiltradas = fichasFiltradas.filter(
+        (element: Ficha) => element[key] === filtros[key]
+      );
+    }
+
     return {
-      lista: fichas,
+      lista: fichasFiltradas,
       totalDatos: fichas.length,
     };
   }

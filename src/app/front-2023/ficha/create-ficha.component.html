@@ -60,6 +60,17 @@
                   </mat-form-field>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Catogoria" name="categoria" [(ngModel)]="ficha.categoria">
+                      <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                        {{categoria.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
             </form>
           </div>
           <!-- div card footer with items aligned to right -->

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { listadatos } from '../model/datos';
-import { Reserva } from '../model/reserva';
+import { FiltroReserva, Reserva } from '../model/reserva';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +15,37 @@ export class ReservaService {
     return reserva;
   }
 
-  getReservas(filtros?: GetReservaProps): listadatos<Reserva> {
-    const { estado = 'Activa' } = filtros ?? {};
+  getReservas(filtros?: FiltroReserva): listadatos<Reserva> {
     const reservas: Reserva[] =
       JSON.parse(localStorage.getItem('reservas')) ?? [];
-    const reservasFiltradas = reservas.filter(
-      (element: Reserva) => element.estado === estado
-    );
+
+    if (filtros === undefined) {
+      return {
+        lista: reservas,
+        totalDatos: reservas.length,
+      };
+    }
+
+    let reservasFiltradas = reservas;
+    for (const key in filtros) {
+      if (!filtros[key]) continue;
+      if (key == 'fechaInicio') {
+        reservasFiltradas = reservasFiltradas.filter(
+          (element: Reserva) => element.fecha >= filtros[key]
+        );
+        continue;
+      }
+      if (key == 'fechaFin') {
+        reservasFiltradas = reservasFiltradas.filter(
+          (element: Reserva) => element.fecha <= filtros[key]
+        );
+        continue;
+      }
+      reservasFiltradas = reservasFiltradas.filter(
+        (element: Reserva) => element[key] === filtros[key]
+      );
+    }
+
     return {
       lista: reservasFiltradas,
       totalDatos: reservas.length,

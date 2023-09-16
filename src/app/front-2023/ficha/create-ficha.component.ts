@@ -7,6 +7,7 @@ import { Ficha } from '../model/ficha.model';
 import { FichaService } from '../service/ficha.service';
 import { PacienteService } from '../service/servicepaciente.service';
 import { ReservaService } from '../service/reserva.service';
+import { CategoriaService } from '../service/categoria.service';
 
 @Component({
   selector: 'app-ficha',
@@ -18,11 +19,13 @@ export class CreateFicha {
   pacientes = [];
   doctores = [];
   reservas = [];
+  categorias = [];
 
   constructor(
     private fichaService: FichaService,
     private pacienteService: PacienteService,
     private reservaService: ReservaService,
+    private categoriaService: CategoriaService,
     private router: Router
   ) {}
 
@@ -34,6 +37,7 @@ export class CreateFicha {
       flag_es_doctor: true,
     }).lista;
     this.reservas = this.reservaService.getReservas().lista;
+    this.categorias = this.categoriaService.getCategorias().lista;
   }
 
   create() {

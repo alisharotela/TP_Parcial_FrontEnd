@@ -31,25 +31,25 @@ export const ROUTES: RouteInfo[] = [
     children: [
       {
         path: 'paciente',
-        title: 'Paciente',
+        title: 'Admin. de Persona',
         type: 'link',
         ab: 'P',
       },
       {
         path: 'reserva',
-        title: 'Reserva',
+        title: 'Admin. de Reserva',
         type: 'link',
         ab: 'R',
       },
       {
         path: 'categoria',
-        title: 'Categoria',
+        title: 'Admin. de Categoria',
         type: 'link',
         ab: 'C',
       },
       {
         path: 'ficha',
-        title: 'Ficha',
+        title: 'Admin. de Ficha',
         type: 'link',
         ab: 'F',
       },

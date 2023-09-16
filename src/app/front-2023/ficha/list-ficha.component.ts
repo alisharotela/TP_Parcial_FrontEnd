@@ -11,6 +11,9 @@ import { FichaService } from '../service/ficha.service';
 import swal from 'sweetalert2';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
+import { ReservaService } from '../service/reserva.service';
+import { PacienteService } from '../service/servicepaciente.service';
+import { CategoriaService } from '../service/categoria.service';
 
 declare interface DataTable {
   headerRow: string[];
@@ -24,8 +27,17 @@ declare interface DataTable {
   styleUrls: ['./list-ficha.component.css'],
 })
 export class ListFicha implements OnInit, AfterViewInit, OnDestroy {
-  fichas: Ficha[] = [];
   title = 'Fichas';
+  fichas: Ficha[] = [];
+  reservas = [];
+  doctores = [];
+  pacientes = [];
+  categorias = [];
+  doctor = null;
+  paciente = null;
+  fechaInicio = null;
+  fechaFin = null;
+  categoria = null;
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
@@ -35,6 +47,9 @@ export class ListFicha implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private servicioFicha: FichaService,
+    private servicioReserva: ReservaService,
+    private pacienteService: PacienteService,
+    private categoriaService: CategoriaService,
     private router: Router
   ) {}
 
@@ -52,12 +67,23 @@ export class ListFicha implements OnInit, AfterViewInit, OnDestroy {
       },
     };
     this.dataTable = {
-      headerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
-      footerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
+      headerRow: ['Fecha', 'Doctor', 'Paciente', 'Categoria','Actions'],
+      footerRow: ['Fecha', 'Doctor', 'Paciente', 'Categoria','Actions'],
       dataRows: [],
     };
 
     this.fichas = this.servicioFicha.getFichas().lista;
+
+    this.reservas = this.servicioReserva.getReservas().lista;
+
+    this.doctores = this.pacienteService.getPacientes({
+      flag_es_doctor: true,
+    }).lista;
+
+    this.pacientes = this.pacienteService.getPacientes({
+      flag_es_doctor: false,
+    }).lista;
+    this.categorias = this.categoriaService.getCategorias().lista;
   }
 
   public dataTable: DataTable;
@@ -107,5 +133,38 @@ export class ListFicha implements OnInit, AfterViewInit, OnDestroy {
           tryDelete();
         }
       });
+  }
+
+  filtrar() {
+    this.fichas = this.servicioFicha.getFichas({
+      doctor: this.doctor,
+      paciente: this.paciente,
+      fechaInicio: this.fechaInicio,
+      fechaFin: this.fechaFin,
+      categoria: this.categoria,
+    }).lista;
+  }
+
+  limpiar() {
+    this.doctor = null;
+    this.paciente = null;
+    this.fechaInicio = null;
+    this.fechaFin = null;
+    this.categoria = null;
+    this.fichas = this.servicioFicha.getFichas().lista;
+  }
+
+  imprimir() {
+    print();
+  }
+
+  getPersonaName(id: number) {
+    const persona = this.pacienteService.getPaciente(id);
+    return persona.nombre + ' ' + persona.apellido;
+  }
+
+  getCategoriaDescripcion(id: number){
+    const categoria = this.categoriaService.getCategoria(id);
+    return categoria.descripcion;
   }
 }

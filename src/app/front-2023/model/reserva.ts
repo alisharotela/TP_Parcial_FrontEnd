@@ -5,5 +5,17 @@ export class Reserva {
   fecha!: Date;
   hora!: string;
   paciente!: Paciente;
+  doctor!: Paciente;
   estado!: string;
+}
+
+export class FiltroReserva {
+  idReserva?: number;
+  fechaInicio?: Date;
+  fechaFin?: Date;
+  fecha?: string;
+  hora?: string;
+  paciente?: Paciente;
+  doctor?: Paciente;
+  estado?: string;
 }

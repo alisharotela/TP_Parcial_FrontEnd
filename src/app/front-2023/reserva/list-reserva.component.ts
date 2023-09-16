@@ -11,6 +11,7 @@ import { ReservaService } from '../service/reserva.service';
 import swal from 'sweetalert2';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
+import { PacienteService } from '../service/servicepaciente.service';
 
 declare interface DataTable {
   headerRow: string[];
@@ -24,8 +25,14 @@ declare interface DataTable {
   styleUrls: ['./list-reserva.component.css'],
 })
 export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
-  reservas: Reserva[] = [];
   title = 'Reservas';
+  reservas: Reserva[] = [];
+  doctores = [];
+  pacientes = [];
+  doctor = null;
+  paciente = null;
+  fechaInicio = null;
+  fechaFin = null;
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
@@ -35,6 +42,7 @@ export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private servicioReserva: ReservaService,
+    private pacienteService: PacienteService,
     private router: Router
   ) {}
 
@@ -52,13 +60,19 @@ export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
       },
     };
     this.dataTable = {
-      headerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
-      footerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
+      headerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Actions'],
+      footerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Actions'],
       dataRows: [],
     };
 
-    this.reservas = this.servicioReserva.getReservas({
-      estado: 'Activa',
+    this.getReservasDelDia();
+
+    this.doctores = this.pacienteService.getPacientes({
+      flag_es_doctor: true,
+    }).lista;
+
+    this.pacientes = this.pacienteService.getPacientes({
+      flag_es_doctor: false,
     }).lista;
   }
 
@@ -87,9 +101,7 @@ export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
   close(e: Reserva) {
     const tryDelete = () => {
       this.servicioReserva.cancelarReserva(e.idReserva);
-      this.reservas = this.servicioReserva.getReservas({
-        estado: 'Activa',
-      }).lista;
+      this.getReservasDelDia();
     };
 
     swal
@@ -111,5 +123,41 @@ export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
           tryDelete();
         }
       });
+  }
+
+  filtrar() {
+    this.reservas = this.servicioReserva.getReservas({
+      doctor: this.doctor,
+      paciente: this.paciente,
+      fechaInicio: this.fechaInicio,
+      fechaFin: this.fechaFin,
+    }).lista;
+  }
+
+  limpiar() {
+    this.doctor = null;
+    this.paciente = null;
+    this.fechaInicio = null;
+    this.fechaFin = null;
+    this.getReservasDelDia();
+  }
+
+  getPersonaName(id: number) {
+    const persona = this.pacienteService.getPaciente(id);
+    return persona.nombre + ' ' + persona.apellido;
+  }
+
+  getReservasDelDia() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // El mes es 0-indexado, por lo que sumamos 1 y formateamos.
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate);
+
+    this.reservas = this.servicioReserva.getReservas({
+      fecha: formattedDate,
+    }).lista;
   }
 }

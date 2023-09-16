@@ -12,3 +12,15 @@ export class Ficha {
   categoria!: Categoria;
   reserva!: Reserva;
 }
+
+export class FiltroFicha {
+  idFicha?: number;
+  paciente?: Paciente;
+  doctor?: Paciente;
+  fechaInicio?: string;
+  fechaFin?: string;
+  motivo_consulta?: string;
+  diagnostico?: string;
+  categoria?: Categoria;
+  reserva?: Reserva;
+}

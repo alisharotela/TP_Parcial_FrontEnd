@@ -14,6 +14,7 @@ import { PacienteService } from '../service/servicepaciente.service';
 export class CreateReserva {
   reserva = new Reserva();
   pacientes = [];
+  doctores = [];
   //   09:00 a 10:00, 10:00 a 11:00,
   // etc y así hasta las 20:00 a 21:00
   horas = [];
@@ -24,7 +25,12 @@ export class CreateReserva {
   ) {}
 
   ngOnInit(): void {
-    this.pacientes = this.pacienteService.getPacientes().lista;
+    this.pacientes = this.pacienteService.getPacientes({
+      flag_es_doctor: false,
+    }).lista;
+    this.doctores = this.pacienteService.getPacientes({
+      flag_es_doctor: true,
+    }).lista;
     for (let i = 9; i < 21; i++) {
       this.horas.push(i + ':00 a ' + (i + 1) + ':00');
     }

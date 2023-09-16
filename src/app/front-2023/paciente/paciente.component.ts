@@ -53,8 +53,24 @@ export class PacienteComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     };
     this.dataTable = {
-      headerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
-      footerRow: ['Id', 'Nombre', 'Apellido', 'Email', 'Telefono', 'Actions'],
+      headerRow: [
+        'Id',
+        'Nombre',
+        'Apellido',
+        'Email',
+        'Telefono',
+        'Paciente/Doctor',
+        'Actions',
+      ],
+      footerRow: [
+        'Id',
+        'Nombre',
+        'Apellido',
+        'Email',
+        'Telefono',
+        'Paciente/Doctor',
+        'Actions',
+      ],
       dataRows: [],
     };
 

@@ -16,8 +16,6 @@
                     <input matInput name="fecha" placeholder="Fecha" type="date" [(ngModel)]="reserva.fecha">
                   </mat-form-field>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-sm-6">
                   <mat-form-field class="example-full-width">
                     <mat-select placeholder="Hora" name="hora" [(ngModel)]="reserva.hora">
@@ -29,6 +27,15 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Doctor" name="doctor" [(ngModel)]="reserva.doctor">
+                      <mat-option *ngFor="let doctor of doctores" [value]="doctor.idPersona">
+                        {{doctor.nombre}} {{doctor.apellido}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
                 <div class="col-sm-6">
                   <mat-form-field class="example-full-width">
                     <mat-select placeholder="Paciente" name="paciente" [(ngModel)]="reserva.paciente">
