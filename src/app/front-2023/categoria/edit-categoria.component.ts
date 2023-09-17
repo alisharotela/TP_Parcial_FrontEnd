@@ -33,8 +33,8 @@ export class EditCategoria implements OnInit {
       if (res)
         swal
           .fire({
-            title: 'Creado!',
-            text: 'El nuevo categoria fue creado exitosamente.',
+            title: 'Actualizado!',
+            text: 'La nueva categoría fue actualizada exitosamente.',
             icon: 'success',
             customClass: {
               confirmButton: 'btn btn-success',
@@ -45,7 +45,7 @@ export class EditCategoria implements OnInit {
             this.router.navigate(['/categoria']);
           });
       else {
-        let message = 'El categoria no pudo ser creado. \n';
+        let message = 'La categoría no pudo ser actualizada. \n';
         swal.fire({
           title: 'Error!',
           text: message,

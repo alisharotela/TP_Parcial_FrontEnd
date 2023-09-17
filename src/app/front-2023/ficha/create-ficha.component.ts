@@ -47,7 +47,7 @@ export class CreateFicha {
       swal
         .fire({
           title: 'Actualizado!',
-          text: 'La nueva ficha fue agregado exitosamente.',
+          text: 'La nueva ficha fue agregada exitosamente.',
           icon: 'success',
           customClass: {
             confirmButton: 'btn btn-success',

@@ -33,8 +33,8 @@ export class EditPaciente implements OnInit {
       if (res)
         swal
           .fire({
-            title: 'Creado!',
-            text: 'El nuevo paciente fue creado exitosamente.',
+            title: 'Actualizada!',
+            text: 'La nueva persona fue actualizada exitosamente.',
             icon: 'success',
             customClass: {
               confirmButton: 'btn btn-success',
@@ -45,7 +45,7 @@ export class EditPaciente implements OnInit {
             this.router.navigate(['/paciente']);
           });
       else {
-        let message = 'El paciente no pudo ser creado. \n';
+        let message = 'La persona no pudo ser actualizada. \n';
         swal.fire({
           title: 'Error!',
           text: message,

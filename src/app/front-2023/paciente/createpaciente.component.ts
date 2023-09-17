@@ -24,7 +24,7 @@ export class CreatePaciente {
       swal
         .fire({
           title: 'Actualizado!',
-          text: 'El nuevo paciente fue agregado exitosamente.',
+          text: 'La nueva persona fue agregada exitosamente.',
           icon: 'success',
           customClass: {
             confirmButton: 'btn btn-success',

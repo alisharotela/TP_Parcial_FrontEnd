@@ -52,8 +52,8 @@ export class ListCategoria implements OnInit, AfterViewInit, OnDestroy {
       },
     };
     this.dataTable = {
-      headerRow: ['Id', 'Descripcion', 'Actions'],
-      footerRow: ['Id', 'Descripcion', 'Actions'],
+      headerRow: ['Id', 'Descripción', 'Actions'],
+      footerRow: ['Id', 'Descripción', 'Actions'],
       dataRows: [],
     };
 

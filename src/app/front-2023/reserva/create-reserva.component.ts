@@ -43,7 +43,7 @@ export class CreateReserva {
       swal
         .fire({
           title: 'Actualizado!',
-          text: 'La nueva reserva fue agregado exitosamente.',
+          text: 'La nueva reserva fue agregada exitosamente.',
           icon: 'success',
           customClass: {
             confirmButton: 'btn btn-success',
