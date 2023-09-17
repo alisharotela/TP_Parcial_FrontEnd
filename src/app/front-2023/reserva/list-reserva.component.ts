@@ -60,8 +60,8 @@ export class ListReserva implements OnInit, AfterViewInit, OnDestroy {
       },
     };
     this.dataTable = {
-      headerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Actions'],
-      footerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Actions'],
+      headerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Estado', 'Actions'],
+      footerRow: ['Fecha', 'Hora', 'Doctor', 'Paciente', 'Estado', 'Actions'],
       dataRows: [],
     };
 
