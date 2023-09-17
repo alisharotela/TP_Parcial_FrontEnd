@@ -67,8 +67,9 @@
                     <th>{{ dataTable.headerRow[2] }}</th>
                     <th>{{ dataTable.headerRow[3] }}</th>
                     <th>{{ dataTable.headerRow[4] }}</th>
+                    <th>{{ dataTable.headerRow[5] }}</th>
                     <th class="disabled-sorting ">
-                      {{ dataTable.headerRow[5] }}
+                      {{ dataTable.headerRow[6] }}
                     </th>
                   </tr>
                 </thead>
@@ -79,7 +80,8 @@
                     <th>{{ dataTable.footerRow[2] }}</th>
                     <th>{{ dataTable.footerRow[3] }}</th>
                     <th>{{ dataTable.footerRow[4] }}</th>
-                    <th class="">{{ dataTable.footerRow[5] }}</th>
+                    <th>{{ dataTable.footerRow[5] }}</th>
+                    <th class="">{{ dataTable.footerRow[6] }}</th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -88,6 +90,7 @@
                     <td>{{ reserva.hora }}</td>
                     <td>{{ getPersonaName(reserva.doctor) }}</td>
                     <td>{{ getPersonaName(reserva.paciente) }}</td>
+                    <td>{{ reserva.estado }}</td>
                     <td class="">
                       <!-- Angular on click button -->
 
@@ -96,8 +99,10 @@
                         class="btn btn-link btn-info btn-just-icon like"
                         ><i class="material-icons">favorite</i></a
                       > -->
-                      <a (click)="close(reserva)" class="btn btn-link btn-danger btn-just-icon remove"><i
-                          class="material-icons">close</i></a>
+                      <div *ngIf="reserva.estado == 'Activa'">
+                        <a (click)="close(reserva)" class="btn btn-link btn-danger btn-just-icon remove"><i
+                            class="material-icons">close</i></a>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
