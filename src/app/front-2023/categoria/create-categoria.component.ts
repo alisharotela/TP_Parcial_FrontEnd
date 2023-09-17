@@ -26,7 +26,7 @@ export class CreateCategoria {
       swal
         .fire({
           title: 'Actualizado!',
-          text: 'La nueva categoria fue agregado exitosamente.',
+          text: 'La nueva categoria fue agregada exitosamente.',
           icon: 'success',
           customClass: {
             confirmButton: 'btn btn-success',
