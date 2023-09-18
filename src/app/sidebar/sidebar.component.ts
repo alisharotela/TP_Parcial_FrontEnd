@@ -24,7 +24,7 @@ export interface ChildrenItems {
 export const ROUTES: RouteInfo[] = [
   {
     path: '',
-    title: 'Aplicaciones',
+    title: 'Gestiones',
     type: 'sub',
     icontype: 'apps',
     collapse: 'apps',
@@ -54,12 +54,6 @@ export const ROUTES: RouteInfo[] = [
         ab: 'F',
       },
     ],
-  },
-  {
-    path: '/dashboard',
-    title: 'Dashboard',
-    type: 'link',
-    icontype: 'dashboard',
   },
   
 ];
