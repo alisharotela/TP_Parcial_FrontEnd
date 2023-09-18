@@ -20,7 +20,7 @@
                   <mat-form-field class="example-full-width">
                     <mat-select placeholder="Reserva" name="Reserva" [(ngModel)]="ficha.reserva" >
                       <mat-option *ngFor="let reserva of reservas" [value]="reserva.idReserva">
-                        {{reserva.fecha}} {{reserva.hora}} {{reserva.paciente}}
+                        {{reserva.fecha}} {{reserva.hora}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-sm-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput name="text" placeholder="diagnostico" type="text"
+                    <input matInput name="text" placeholder="Diagnostico" type="text"
                       [(ngModel)]="ficha.diagnostico">
                   </mat-form-field>
                 </div>
